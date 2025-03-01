@@ -6,6 +6,19 @@ A simple python script to take all the java classes in a directory and output th
 
 from argparse import ArgumentParser
 import os
+import gi
+
+gi.require_version("Gtk", "3.0")
+
+from gi.repository import Gtk, Gdk
+
+
+def copy_text(text: str):
+    #self.clipboard.set_text(self.entry.get_text(), -1)
+    clipboard = Gtk.Clipboard.get(Gdk.SELECTION_CLIPBOARD)
+    #clipboard.set_text(text, -1)
+    print(clipboard)
+
 
 def get_classes(folder: str, excl, main: bool = False) -> str:
     """
@@ -21,7 +34,7 @@ def get_classes(folder: str, excl, main: bool = False) -> str:
                     lines += line
             lines += "\n"
             f.close()
-    return(lines)
+    return lines
 
 if __name__ == "__main__":
     parser = ArgumentParser()
@@ -37,4 +50,5 @@ if __name__ == "__main__":
     if args.exclude == None:
         args.exclude = []
     classes = get_classes(args.folder, args.exclude, args.main)
+    copy_text(classes)
     print(classes)
