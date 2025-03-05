@@ -12,7 +12,12 @@ def set_clipboard(text: str) -> str:
     Set the clipboard to the given text using xclip
     Returns the text that was set to the clipboard for testing.
     """
-    os.system("echo \"" + text + "\" | xclip -rmlastnl -selection clipboard")
+    os.system(
+        "echo \"" +
+        text.replace('\"', '\\\"') +
+        "\" |" + 
+        "xclip -rmlastnl -selection clipboard"
+    )
     return text
 
 def get_classes(folder: str, excl, main: bool = False) -> str:
