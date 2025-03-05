@@ -7,6 +7,14 @@ A simple python script to take all the java classes in a directory and output th
 from argparse import ArgumentParser
 import os
 
+def set_clipboard(text: str) -> str:
+    """
+    Set the clipboard to the given text using xclip
+    Returns the text that was set to the clipboard for testing.
+    """
+    os.system("echo \"" + text + "\" | xclip -rmlastnl -selection clipboard")
+    return text
+
 def get_classes(folder: str, excl, main: bool = False) -> str:
     """
     Get all the classes in a folder
