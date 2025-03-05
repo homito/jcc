@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2024 Yoann Mahiout
+Copyright (c) 2025 Yoann Mahiout
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
