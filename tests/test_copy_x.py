@@ -23,9 +23,20 @@ class TestCopyX(unittest.TestCase):
         )
 
         self.assertEqual(
-            set_clipboard("copied\n text\n"),
+            set_clipboard("\'copied\'\n text\n"),
             subprocess.run(arg, shell=True, capture_output=True, text=True, check=True).stdout
         )
+
+        self.assertEqual(
+            set_clipboard("\"copied\"\n text\n"),
+            subprocess.run(arg, shell=True, capture_output=True, text=True, check=True).stdout
+        )
+
+        """ self.assertEqual(
+            set_clipboard("\'text"),
+            subprocess.run(arg, shell=True, capture_output=True, text=True, check=True).stdout
+        ) """ # this one should be an error
+        # TODO: make this test fail
 
 if __name__ == "__main__":
     unittest.main()
