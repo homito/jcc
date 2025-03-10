@@ -32,11 +32,5 @@ class TestCopyX(unittest.TestCase):
             subprocess.run(arg, shell=True, capture_output=True, text=True, check=True).stdout
         )
 
-        """ self.assertEqual(
-            set_clipboard("\'text"),
-            subprocess.run(arg, shell=True, capture_output=True, text=True, check=True).stdout
-        ) """ # this one should be an error
-        # TODO: make this test fail
-
 if __name__ == "__main__":
     unittest.main()
