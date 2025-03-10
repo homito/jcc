@@ -50,4 +50,4 @@ if __name__ == "__main__":
     if args.exclude == None:
         args.exclude = []
     classes = get_classes(args.folder, args.exclude, args.main)
-    print(classes)
+    set_clipboard(classes)
