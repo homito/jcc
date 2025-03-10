@@ -1,4 +1,18 @@
 #!/bin/bash
+# This script installs the jcc command line tool
+
+# Check for xclip dependency
+if ! command -v xclip 2>&1 >/dev/null; then
+    printf "Xclip is not installed but is required for jcc to function.\n"
+    printf "Install xclip? (y/n): "
+    read -n1 response
+    if [ "$response" = "y" ]; then
+        sudo apt-get install xclip
+    else
+        printf "\nExiting..."
+        exit 1
+    fi
+fi
 
 # Define the source and destination paths
 SRC_PATH="jcc/jcc.py"
