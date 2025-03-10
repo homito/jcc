@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the source and destination paths
-SRC_PATH="src/jcc.py"
+SRC_PATH="jcc/jcc.py"
 DEST_PATH="/usr/local/bin/jcc"
 
 # Check if the source file exists
