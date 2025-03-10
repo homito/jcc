@@ -28,26 +28,32 @@ def get_classes(folder: str, excl, main: bool = False) -> str:
     lines = ""
     for file in os.listdir(folder):
         if file.endswith(".java") and (file not in excl):
-            f = open((folder + file), "r")
+            f = open((folder + file), "r", encoding="utf-8")
             for line in f.readlines():
                 if not line.startswith("import "):
                     lines += line
             lines += "\n"
             f.close()
-    return(lines)
+    return lines
 
 if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument('folder', help='The folder to parse')
     parser.add_argument(
-        "-m", "--main", help="do not ignore the main class", action="store_true"
+        "-m",
+        "--main",
+        help="do not ignore the main class",
+        action="store_true"
     )
     parser.add_argument(
-        "-e", "--exclude", nargs='*', help="exclude specified class or classes by name (is case sensitive)"
+        "-e",
+        "--exclude",
+        nargs='*',
+        help="exclude specified class or classes by name (is case sensitive)"
     )
     args = parser.parse_args()
 
-    if args.exclude == None:
+    if args.exclude is None:
         args.exclude = []
     classes = get_classes(args.folder, args.exclude, args.main)
     set_clipboard(classes)
