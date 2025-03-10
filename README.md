@@ -1,12 +1,28 @@
 # 📋 Java Classes to Clipboard
 
 A Python script that copies the contents of a Java directory to the clipboard.
-( i dont really know how to put it to the clipboard on linux just yet though.)
 
-# Installation
-run the install.sh script to install the script to /usr/local/bin
+## Features
+Copies the contents of a Java directory to the clipboard
 
-# Usage 
+## Supported Platforms
+| Syntax | Description |
+| ----------- | ----------- |
+| Linux/X11 | ✅ |
+| Linux/Wayland | ❌ |
+| Windows | ❌ |
+| MacOS | ❌ | 
+
+## Installation
+### Linux
+Download run the install.sh script to install the script to /usr/local/bin
+
+## Usage 
 ```bash 
 jcc <path to java directory>
+```
+
+## Example
+```bash
+jcc javaproject/src/main/java/com/example/
 ```
