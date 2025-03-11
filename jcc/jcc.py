@@ -51,9 +51,18 @@ if __name__ == "__main__":
         nargs='*',
         help="exclude specified class or classes by name (is case sensitive)"
     )
+    parser.add_argument(
+        "-o",
+        "--output",
+        help="output file",
+        action="store_true"
+    )
     args = parser.parse_args()
 
     if args.exclude is None:
         args.exclude = []
     classes = get_classes(args.folder, args.exclude, args.main)
     set_clipboard(classes)
+
+    if args.output:
+        print(classes)
