@@ -26,14 +26,25 @@ def get_classes(folder: str, excl, main: bool = False) -> str:
     """
     files = ""
     lines = ""
+    import_lines = [""]
+    package_lines = [""] # samesies
     for file in os.listdir(folder):
         if file.endswith(".java") and (file not in excl):
             f = open((folder + file), "r", encoding="utf-8")
             for line in f.readlines():
-                if not line.startswith("import "):
+                if line.startswith("import "):
+                    import_lines.append(line)
+                elif line.startswith("package "):
+                    package_lines.append(line)
+                else:
+                #if not line.startswith("import ") and not line.startswith("package "):
                     lines += line
             lines += "\n"
             f.close()
+    import_lines = list(set(import_lines))
+    package_lines = list(set(package_lines))
+    # TODO: implement import and package parser choice to be added to the parameters, for now it only adds import bc i dont need package rn 
+    lines = "".join(import_lines) + lines
     return lines
 
 if __name__ == "__main__":
@@ -57,11 +68,23 @@ if __name__ == "__main__":
         help="output file",
         action="store_true"
     )
+    parser.add_argument(
+        "-i",
+        "--import",
+        help="include import statements",
+        action="store_true"
+    )
+    parser.add_argument(
+        "-p",
+        "--package",
+        help="include package statement",
+        action="store_true"
+    )
     args = parser.parse_args()
 
     if args.exclude is None:
         args.exclude = []
-    classes = get_classes(args.folder, args.exclude, args.main)
+    classes = get_classes(args.folder, args.exclude, args.main) #TODO: import and package parser arg to be added to the parameters maybe
     set_clipboard(classes)
 
     if args.output:
