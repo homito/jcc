@@ -39,15 +39,46 @@ class TestCopyX(unittest.TestCase):
         incl = False
         pckg = False
 
-        res_classes = get_classes(java_folder, excl, main, incl, pckg)
         ref_classes = ""
-
         with open(reference_folder + "reference", "r", encoding="utf-8") as f:
             for line in f.readlines():
                 ref_classes += line
         f.close()
 
-        self.assertEqual(res_classes, ref_classes)
+        ref_classes_incl = ""
+        with open(reference_folder + "reference_import", "r", encoding="utf-8") as f:
+            for line in f.readlines():
+                ref_classes_incl += line
+        f.close()
+
+        ref_classes_pckg = ""
+        with open(reference_folder + "reference_package", "r", encoding="utf-8") as f:
+            for line in f.readlines():
+                ref_classes_pckg += line
+        f.close()
+
+        ref_classes_pckg_incl = ""
+        with open(reference_folder + "reference_import_package", "r", encoding="utf-8") as f:
+            for line in f.readlines():
+                ref_classes_pckg_incl += line
+        f.close()
+
+        self.assertEqual(
+            get_classes(java_folder, excl, main, incl, pckg),
+            ref_classes
+            )
+        self.assertEqual(
+            get_classes(java_folder, excl, main, incl, True),
+            ref_classes_incl
+            )
+        self.assertEqual(
+            get_classes(java_folder, excl, main, True, pckg),
+            ref_classes_pckg
+            )
+        self.assertEqual(
+            get_classes(java_folder, excl, main, True, True),
+            ref_classes_pckg_incl
+            )
 
 if __name__ == "__main__":
     unittest.main()
