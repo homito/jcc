@@ -36,8 +36,10 @@ class TestCopyX(unittest.TestCase):
 
         excl = []
         main = False
+        incl = False
+        pckg = False
 
-        res_classes = get_classes(java_folder, excl, main)
+        res_classes = get_classes(java_folder, excl, main, incl, pckg)
         ref_classes = ""
 
         with open(reference_folder + "reference", "r", encoding="utf-8") as f:
