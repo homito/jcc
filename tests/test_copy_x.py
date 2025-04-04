@@ -11,10 +11,6 @@ from jcc import get_classes
 
 
 class TestCopyX(unittest.TestCase):
-    def test_unittest(self):
-        self.assertEqual(1, 1)
-        self.assertNotEqual(1, 0)
-
     def test_set_clipboard(self):
         arg = "xclip -o -selection clipboard"
 
