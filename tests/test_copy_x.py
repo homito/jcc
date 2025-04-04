@@ -68,11 +68,11 @@ class TestCopyX(unittest.TestCase):
             ref_classes
             )
         self.assertEqual(
-            get_classes(java_folder, excl, main, incl, True),
+            get_classes(java_folder, excl, main, True, pckg),
             ref_classes_incl
             )
         self.assertEqual(
-            get_classes(java_folder, excl, main, True, pckg),
+            get_classes(java_folder, excl, main, incl, True),
             ref_classes_pckg
             )
         self.assertEqual(
