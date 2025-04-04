@@ -36,9 +36,8 @@ def get_classes(folder: str, excl, main: bool = False, incl: bool = False, pckg:
                     import_lines.append(line)
                 elif line.startswith("package "):
                     package_lines.append(line)
-                else:
+                elif line != "\n":
                     lines += line
-            lines += "\n"
             f.close()
     import_lines = list(set(import_lines))
     package_lines = list(set(package_lines))
