@@ -70,7 +70,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-i",
-        "--import",
+        "--include",
         help="include import statements",
         action="store_true"
     )
